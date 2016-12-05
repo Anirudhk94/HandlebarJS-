@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>Hello, Handlebars</title>
+	<script src = "bower_components/handlebars/handlebars.js"></script>
+	<script src = "bower_components/handlebars/handlebars.min.js"></script>
+</head>
+
+<body>
+	<div id="myData"></div>
+
+	<script id="quote-template" type="text/x-handlebars-template">
+		{{#each student}}
+		<h3> {{name}}'s Marksheet </h3> 
+			<table border="1">
+					<tr> 
+						 <td>MATH</td>
+						 <td>{{math}}</td> 
+					</tr>
+					<tr> 
+						 <td>SCIENCE</td>
+						 <td>{{science}}</td> 
+					</tr>
+					<tr> 
+						 <td>ENGLISH</td>
+						 <td>{{english}}</td> 
+					</tr>
+				
+			<table>
+		{{/each}}
+	</script>
+
+	<script type="text/javascript">
+		var quoteInfo = document.getElementById("quote-template").innerHTML;
+
+		var template = Handlebars.compile(quoteInfo);
+
+		var quoteData = template({
+			student: [{name : "John Brown",math : "90", science:"43" , english:"95" },
+					  {name : "Walter White",math : "78",  science:"54" , english:"45" },
+					  {name : "Jessey Pinkman",math : "83",  science:"23" , english:"85" }	]	
+		});
+
+		document.getElementById("myData").innerHTML += quoteData;
+	</script>
+
+</body>
+
+</html>
